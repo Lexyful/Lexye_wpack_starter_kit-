@@ -76,6 +76,7 @@ Run your test suite using the command:
 npm test
 ```
 add the thing
+add the other things
 
 The test results will output to the terminal.
 
