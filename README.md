@@ -75,6 +75,7 @@ Run your test suite using the command:
 ```bash
 npm test
 ```
+add the thing
 
 The test results will output to the terminal.
 
