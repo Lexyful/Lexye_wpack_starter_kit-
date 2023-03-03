@@ -27,7 +27,7 @@ beforeEach(() => {
       expect(Rooms).to.be.a('function');
   })
 
-  it('should be an instance of customer', () => {
+  it('should be an instance of rooms', () => {
       expect(rooms).to.be.an.instanceof(Rooms);
   })
   it('should have an id', () => {
