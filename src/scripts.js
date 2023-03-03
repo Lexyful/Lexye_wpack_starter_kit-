@@ -11,15 +11,34 @@ import './css/styles.css';
 console.log('This is the JavaScript entry file - your code begins here.');
 
 
+// let ingredientsData;
+// let recipeRolodex;
+// let userProfile;
+// let recipe;
 
-// function getRandomSomethingId(){
-//   return Math.floor(Math.random() * 41);
+
+// window.addEventListener('load', () => {
+//   fetchAll()
+//   .then(data => {
+//   const idNum = new Customer()
+//   customerProfile = new Customer(data[0].users.find(user => user.id === idNum))
+//   recipe = data[1].ingredients.map(recipe => {
+//   return new Recipe(recipe, ingredientsData)
+//   })
+//   recipeRolodex = new RecipeRepository(data[2].recipes)
+//   // viewHomePage()
+//   }) 
+// });
+
+
+// // function getRandomSomethingId(){
+// //   return Math.floor(Math.random() * 41);
+// // };
+
+// function show(element) {
+// element.classList.remove('hidden');
 // };
 
-function show(element) {
-element.classList.remove('hidden');
-};
-
-function hide(element) {
-element.classList.add('hidden');
-};
+// function hide(element) {
+// element.classList.add('hidden');
+// };
