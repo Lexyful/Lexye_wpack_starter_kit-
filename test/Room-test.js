@@ -1,15 +1,15 @@
 import { expect } from 'chai';
 
-import Rooms from '../src/classes/Rooms';
+import Room from '../src/classes/Room';
 
 
 
 
-describe('Rooms', () => {
-  let rooms;
+describe('Room', () => {
+  let room;
  
 beforeEach(() => {
-  rooms = new Rooms(
+  rooms = new Room(
     {
       number: 982,
       roomType: "suite",
@@ -24,15 +24,15 @@ beforeEach(() => {
 
 
   it('should be a function', () => {
-      expect(Rooms).to.be.a('function');
+      expect(Room).to.be.a('function');
   })
 
   it('should be an instance of rooms', () => {
-      expect(rooms).to.be.an.instanceof(Rooms);
+      expect(rooms).to.be.an.instanceof(Room);
   })
   it('should have an id', () => {
     customerSampleData.forEach(customer => {
-      expect(rooms).to.have.property('id');
+      expect(room).to.have.property('id');
     });
   });
 });

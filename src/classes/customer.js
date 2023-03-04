@@ -5,12 +5,7 @@ class Customer {
     this.name = customer.name
     this.booking = []
   }
-  // customerBookCheck(booking){
-  //   if(custom){
-
-  //   }
-
-  // }
+  getBookingById()
 
 }
 
