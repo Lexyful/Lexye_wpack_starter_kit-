@@ -23,7 +23,7 @@ let bookings;
 let rooms;
 let roomsData;
 
-
+const greetingContainer = document.querySelector('.greeting-container')
 
 window.addEventListener('load', () => {
   fetchAll(38)
@@ -38,12 +38,12 @@ window.addEventListener('load', () => {
   })
 })
 
-// viewCustomerGreeting(){
-
-//   greeting.innerHTML =  `
-//       <h3>Hello ${customer.name}! You have ${customer}</h3>
-//     `
-// }
+viewCustomerGreeting(){
+greetingContainer = ''
+  greeting.innerHTML =  `
+      <h3>Hello ${customer.name}! You have ${customer.customerBookings}</h3>
+    `
+}
 
 // // function getRandomSomethingId(){
 // //   return Math.floor(Math.random() * 41);

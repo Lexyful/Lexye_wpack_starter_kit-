@@ -86,6 +86,14 @@ h1 {
   -webkit-text-stroke-width: 0.04em;
   -webkit-text-stroke-color: rgb(135, 225, 212);
 }
+h3 {
+  
+  color: #ffffff;
+  font-size: 1.0vw;
+  -webkit-text-stroke-width: 0.04em;
+  -webkit-text-stroke-color: rgb(135, 225, 212);
+  
+}
 
 
 .main-page-section {
