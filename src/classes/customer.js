@@ -3,10 +3,14 @@ class Customer {
     this.id = customer.id
     // console.log(id)
     this.name = customer.name
-    this.booking = []
+    this.bookings = []
   }
-  // getBookingById()
+  addBookingById(){
+    return this.bookings = bookingsData.filter(booking => bookings.userID === this.id)
 
-}
+    }
+  }
+
+
 
 export default Customer

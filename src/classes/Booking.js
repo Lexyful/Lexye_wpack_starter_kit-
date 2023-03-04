@@ -5,9 +5,9 @@ class Booking {
   }
 //match userid to booking id
 getBookingByCustomerId(id){
- return roomById = this.bookings.filter(booking =>  booking.userID === id)
-
+ return this.bookings.filter(bookings =>  bookings.userID === id)
 }
+
 }
 
 export default Booking

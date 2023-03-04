@@ -34,10 +34,16 @@ window.addEventListener('load', () => {
   rooms = new Room(roomsData)
   bookingsData =  data[2].bookings
   bookings =  new Booking(bookingsData)
-  console.log(getBookingByCustomerId(customer.id))
+  console.log(bookings.getBookingByCustomerId(customer.id))
   })
 })
 
+// viewCustomerGreeting(){
+
+//   greeting.innerHTML =  `
+//       <h3>Hello ${customer.name}! You have ${customer}</h3>
+//     `
+// }
 
 // // function getRandomSomethingId(){
 // //   return Math.floor(Math.random() * 41);
