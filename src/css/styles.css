@@ -95,7 +95,10 @@ h3 {
   
 }
 
-
+.greeting-container{
+  display: flex;
+  flex-direction: column;
+}
 .main-page-section {
    background-image: url("/src/images/pink-hotel.png"); 
   background-repeat: no-repeat;

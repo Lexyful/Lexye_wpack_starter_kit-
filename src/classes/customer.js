@@ -15,9 +15,16 @@ class Customer {
     this.customerBookings = bookingsData.bookings.filter(booking => booking.userID === this.id)
      
     }
-
-    calculateCost(){
-     this.customerBookings
+// store this in a variable to invoke it because of the direct return
+    calculateCost(rooms){
+    return  this.customerBookings.reduce((acc, booking) => {
+      rooms.rooms.forEach(room => {
+      if(booking.roomNumber === room.number){
+          acc += room.costPerNight
+      }
+      })
+      return acc
+     }, 0)
     }
 
   }

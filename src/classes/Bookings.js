@@ -1,5 +1,5 @@
 
-class Booking {
+class Bookings {
   constructor(bookings){
    this.bookings = bookings
   }
@@ -10,4 +10,4 @@ getBookingByCustomerId(id){
 
 }
 
-export default Booking
+export default Bookings

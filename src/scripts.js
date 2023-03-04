@@ -1,6 +1,6 @@
 import fetchAll from './apiCalls';
 import Customer from './classes/Customer';
-import Booking from './classes/Booking';
+import Booking from './classes/Bookings';
 import Room from './classes/Rooms';
 
 // This is the JavaScript entry file - your code begins here
@@ -25,6 +25,10 @@ let roomsData;
 let greeting
 
 const greetingContainer = document.querySelector('.greeting-container')
+const searchButton = document.getElementById('dateSubmit')
+const calendar = document.getElementById('calendar')
+
+
 
 window.addEventListener('load', () => {
   fetchAll(38)
@@ -40,24 +44,34 @@ window.addEventListener('load', () => {
   })
 })
 
+searchButton.addEventListener('click', searchRoomsByDate)
+
 function viewCustomerGreeting(){
   console.log("customer!!!!!",customer)
   customer.checkBookings(bookings)
-  greetingContainer.innerHTML = ` <h3>Hello ${customer.name}! You have below bookings and they cost $$$</h3>`
+  const totalCost = customer.calculateCost(rooms)
+  greetingContainer.innerHTML = ` <h3>Hello ${customer.name}! You have bookings and they cost ${totalCost}</h3>`
   customer.customerBookings.forEach(booking => {
-    console.log("hi", booking)
-    greetingContainer.innerHTML +=  `<div>
-    <h3>${booking.date}</h3>
-    <h3>${booking.roomNumber}</h3>
+    greetingContainer.innerHTML +=  `<div class="displayed-bookings">
+    <p>${booking.date}<p>
+    <p>${booking.roomNumber}<p>
      </div>`
   })
   
   
-  
- 
- 
 }
 
+
+function searchRoomsByDate(){
+  event.preventDefault()
+  // console.log(calendar.value)
+  const selectedDate = calendar.value.replaceAll('-','/')
+  console.log(selectedDate)
+  if(bookings.booking)
+  // 2022/04/22
+  
+  // 2023-03-23
+}
 // // function getRandomSomethingId(){
 // //   return Math.floor(Math.random() * 41);
 // // };
