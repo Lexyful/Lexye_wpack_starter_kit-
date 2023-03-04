@@ -23,7 +23,7 @@ let bookings;
 let rooms;
 let roomsData;
 
-
+const greetingContainer = document.querySelector('.greeting-container')
 
 window.addEventListener('load', () => {
   fetchAll(38)
@@ -39,7 +39,7 @@ window.addEventListener('load', () => {
 })
 
 viewCustomerGreeting(){
-
+greetingContainer = ''
   greeting.innerHTML =  `
       <h3>Hello ${customer.name}! You have ${customer.customerBookings}</h3>
     `
