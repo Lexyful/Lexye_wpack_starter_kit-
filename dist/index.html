@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Antic+Didone&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Birthstone+Bounce&display=swap" rel="stylesheet">
 
   <title>Hotel Turing</title>
 
@@ -14,23 +22,27 @@
   <header class="navigation-bar-container" id="navigationBarContainer">
     <nav class="nav-bar" id="navBar">
     </nav>  
-    <h1>Hotel Turing</h1>
-    
-     <section class="sign-in-view hidden" id="signInView">
-      <div class="sign-in-container" id="signInContainer">
-        <label for="unam e"><b>Username</b></label>
-        <input type="text" placeholder="Username" name="username" required>
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-        <button type="submit">Sign in</button>
-      </div>
-    </section>
-   
     <form class="datepicker">
-      <label for="calendar" class="find-room-text">FIND A ROOM</label>
+      <label for="calendar" class="find-room-text">Select Your Room</label>
       <input type="date" id="calendar" value="">
       <input type="submit" id="dateSubmit" value="Search">
     </form>
+    <div class="main" id="mainScreen">
+    <section class="main-page-section" id="toastSection">
+      <h1 class="hotel-turing-title">Hotel Turing</h1>
+      <section class="sign-in-view hidden" id="signInView">
+        <div class="sign-in-container" id="signInContainer">
+          <label for="unam e"><b>Username</b></label>
+          <input type="text" placeholder="Username" name="username" required>
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="password" required>
+          <button class="submit-button" type="submit">Sign in</button>
+        </div>
+      </section>
+      </section>
+      </div>
+          </button>
+        </section>
     
 </header> 
 <main>
