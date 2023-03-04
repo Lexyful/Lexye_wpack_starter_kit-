@@ -15,12 +15,22 @@
     <nav class="nav-bar" id="navBar">
     </nav>  
     <h1>Hotel Turing</h1>
-  
-    <label for="start">Start date:</label>
-
-    <input type="date" id="start" name="trip-start"
-           value="2018-07-22"
-           min="2018-01-01" max="2018-12-31">
+    
+     <section class="sign-in-view hidden" id="signInView">
+      <div class="sign-in-container" id="signInContainer">
+        <label for="unam e"><b>Username</b></label>
+        <input type="text" placeholder="Username" name="username" required>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+        <button type="submit">Sign in</button>
+      </div>
+    </section>
+   
+    <form class="datepicker">
+      <label for="calendar" class="find-room-text">FIND A ROOM</label>
+      <input type="date" id="calendar" value="">
+      <input type="submit" id="dateSubmit" value="Search">
+    </form>
     
 </header> 
 <main>

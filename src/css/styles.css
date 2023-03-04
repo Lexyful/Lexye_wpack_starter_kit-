@@ -33,6 +33,20 @@ label {
 
 
 
+.sign-in-view{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.sign-in-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+
 body {  
   background: rgb(253, 210, 232);
 } 
