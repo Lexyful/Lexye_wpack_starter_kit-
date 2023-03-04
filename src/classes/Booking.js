@@ -4,9 +4,10 @@ class Booking {
    this.bookings = bookings
   }
 //match userid to booking id
-// getBookingById(customerData, bookingData){
-//  bookingid === bookingid
-// }
+getBookingByCustomerId(id){
+ return roomById = this.bookings.filter(booking =>  booking.userID === id)
+
+}
 }
 
 export default Booking

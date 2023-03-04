@@ -34,6 +34,7 @@ window.addEventListener('load', () => {
   rooms = new Room(roomsData)
   bookingsData =  data[2].bookings
   bookings =  new Booking(bookingsData)
+  console.log(getBookingByCustomerId(customer.id))
   })
 })
 
