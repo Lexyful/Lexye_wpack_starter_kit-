@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {customers, rooms, bookings} from './sampleData'
-import Rooms from '../src/classes/Room';
+import Rooms from '../src/classes/Rooms';
 
 
 

@@ -5,14 +5,20 @@ class Customer {
  
     this.name = customer.name
     this.customerBookings = []
+    
   }
-  addBookingById(bookingsData){
-    return this.customerBookings = bookingsData.filter(booking => booking.userID === this.id)
+  addBookings(){
 
+  }
+
+  checkBookings(bookingsData){
+    this.customerBookings = bookingsData.bookings.filter(booking => booking.userID === this.id)
+     
     }
-  //   getNewBooking(booking){
-  //     this.customerBookings.push(booking)
-  // }
+
+    calculateCost(){
+     this.customerBookings
+    }
 
   }
 

@@ -1,7 +1,7 @@
 import fetchAll from './apiCalls';
 import Customer from './classes/Customer';
 import Booking from './classes/Booking';
-import Room from './classes/Room';
+import Room from './classes/Rooms';
 
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
@@ -42,8 +42,20 @@ window.addEventListener('load', () => {
 
 function viewCustomerGreeting(){
   console.log("customer!!!!!",customer)
-greetingContainer.innerHTML = ` <h3>Hello ${customer.name}! You have ${customer.customerBookings}</h3>`
-
+  customer.checkBookings(bookings)
+  greetingContainer.innerHTML = ` <h3>Hello ${customer.name}! You have below bookings and they cost $$$</h3>`
+  customer.customerBookings.forEach(booking => {
+    console.log("hi", booking)
+    greetingContainer.innerHTML +=  `<div>
+    <h3>${booking.date}</h3>
+    <h3>${booking.roomNumber}</h3>
+     </div>`
+  })
+  
+  
+  
+ 
+ 
 }
 
 // // function getRandomSomethingId(){

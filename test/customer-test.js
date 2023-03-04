@@ -45,8 +45,8 @@ it('should be able to store bookings', () => {
   //   booking1 = new Booking(bookings[0])
   //  booking2 = new Booking(bookings[1])
 
-  customer1.addBookingById(bookings)
-  customer2.addBookingById(bookings)
+  customer1.checkBookings(bookings)
+  customer2.checkBookings(bookings)
  
   expect(customer1.customerBookings).to.deep.equal([bookings[0]]);
   expect(customer2.customerBookings).to.deep.equal([bookings[1]]);
