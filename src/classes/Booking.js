@@ -1,14 +1,12 @@
 
 class Booking {
-  constructor(){
-    this.id = id,
-    this.userId = userId,
-    this.date = date,
-    this.roomNumber = roomNumber
+  constructor(bookings){
+   this.bookings = bookings
   }
 //match userid to booking id
-getBookingById(customerData, bookingData){
- bookingid === bookingid
+getBookingByCustomerId(id){
+ return roomById = this.bookings.filter(booking =>  booking.userID === id)
+
 }
 }
 

@@ -5,7 +5,7 @@ class Customer {
     this.name = customer.name
     this.booking = []
   }
-  getBookingById()
+  // getBookingById()
 
 }
 

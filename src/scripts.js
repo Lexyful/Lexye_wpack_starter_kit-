@@ -1,3 +1,8 @@
+import fetchAll from './apiCalls';
+import Customer from './classes/Customer';
+import Booking from './classes/Booking';
+import Room from './classes/Room';
+
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
 
@@ -11,24 +16,27 @@ import './css/styles.css';
 console.log('This is the JavaScript entry file - your code begins here.');
 
 
-// let ingredientsData;
-// let recipeRolodex;
-// let userProfile;
-// let recipe;
+let customer;
+// let customerData;
+let bookingsData;
+let bookings;
+let rooms;
+let roomsData;
 
 
-// window.addEventListener('load', () => {
-//   fetchAll()
-//   .then(data => {
-//   const idNum = new Customer()
-//   customerProfile = new Customer(data[0].users.find(user => user.id === idNum))
-//   recipe = data[1].ingredients.map(recipe => {
-//   return new Recipe(recipe, ingredientsData)
-//   })
-//   recipeRolodex = new RecipeRepository(data[2].recipes)
-//   // viewHomePage()
-//   }) 
-// });
+
+window.addEventListener('load', () => {
+  fetchAll(38)
+  .then(data => {
+  customer = new Customer(data[0])
+  console.log(customer)
+  roomsData =  data[1].rooms
+  rooms = new Room(roomsData)
+  bookingsData =  data[2].bookings
+  bookings =  new Booking(bookingsData)
+  console.log(getBookingByCustomerId(customer.id))
+  })
+})
 
 
 // // function getRandomSomethingId(){
