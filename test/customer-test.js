@@ -1,20 +1,17 @@
 import { expect } from 'chai';
-import customerSampleData from '../src/classes/customerSampleData';
+import {customers, rooms, bookings} from './sampleData'
 import Customer from '../src/classes/customer';
 
 
 
 
 describe('Customer', () => {
-  let customer;
+  let customer1;
+  let customer2;
  
 beforeEach(() => {
-  customer = new Customer({
-    
-      id: 10,
-      name: "Taylor Jordan",
-      customer: customerSampleData
-  });
+  customer1 = new Customer(customers[0])
+  customer2 = new Customer(customers[1])
 });
 
 
@@ -24,13 +21,28 @@ beforeEach(() => {
   })
 
   it('should be an instance of customer', () => {
-      expect(customer).to.be.an.instanceof(Customer);
+      expect(customer1).to.be.an.instanceof(Customer);
+      expect(customer2).to.be.an.instanceof(Customer);
   })
   it('should have an id', () => {
-    customerSampleData.forEach(customer => {
-      expect(customer).to.have.property('id');
-    });
+    
+      expect(customer1.id).to.equal(1);
+      expect(customer2.id).to.equal(2);
+    
   });
+  it('should have name', () => {
+    
+    expect(customer1.name).to.equal("Bri B");
+    expect(customer2.name).to.equal("Bea O");
+  
+});
+
+it('should be able to store bookings', () => {
+    
+  expect(this.bookings.length).to.be.greaterThan(0);
+
+
+});
 
   // it('should have an image', () => {
   //   const result = recipe.getIngredientsName('Test Recipe');

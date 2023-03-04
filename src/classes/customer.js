@@ -9,6 +9,10 @@ class Customer {
     return this.bookings = bookingsData.filter(booking => bookings.userID === this.id)
 
     }
+    getNewBooking(booking){
+      this.bookings.push(booking)
+  }
+
   }
 
 
