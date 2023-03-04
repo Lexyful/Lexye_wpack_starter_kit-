@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import {customers, rooms, bookings} from './sampleData'
-import Customer from '../src/classes/customer';
+import Customer from '../src/classes/Customer';
+// import Booking from '../src/classes/Booking';
 
 
 
@@ -9,9 +10,12 @@ describe('Customer', () => {
   let customer1;
   let customer2;
  
+ 
 beforeEach(() => {
   customer1 = new Customer(customers[0])
   customer2 = new Customer(customers[1])
+  // booking1 = new Booking(bookings[0])
+  // booking2 = new Booking(bookings[1])
 });
 
 
@@ -38,43 +42,16 @@ beforeEach(() => {
 });
 
 it('should be able to store bookings', () => {
-    
-  expect(this.bookings.length).to.be.greaterThan(0);
+  //   booking1 = new Booking(bookings[0])
+  //  booking2 = new Booking(bookings[1])
 
-
+  customer1.addBookingById(bookings)
+  customer2.addBookingById(bookings)
+ 
+  expect(customer1.customerBookings).to.deep.equal([bookings[0]]);
+  expect(customer2.customerBookings).to.deep.equal([bookings[1]]);
 });
 
-  // it('should have an image', () => {
-  //   const result = recipe.getIngredientsName('Test Recipe');
-  //     expect(recipe.image).to.deep.equal('https://spoonacular.com/recipeImages/1001-556x370.jpg');
-  // })
-
-  // it('should get ingredients by name', () => {
-  //   const result = recipe.getIngredientsName('whipped cream');
-    
-  //   expect(result).to.deep.equal([{id: 93672, name: "whipped cream", estimatedCostInCents: 312, image: "https://spoonacular.com/recipeImages/799732-556x370.jpg", instruction:"Transfer the shrimp to a large bowl and toss with the mayo mixture.In a separate bowl, add the cabbage and lettuce. Toss with the olive oil, vinegar and honey until well coated. Toss the cilantro in. To serve the shrimp, mix with the slaw and garnish the entire thing with chives. Enjoy!", number: 4, quantity: { amount: 2, unit: "cups"}}
-  //   ]);
-  // });
-
-  // it('should calculate the total cost of ingredients', () => {
-  //   const ingredients = [
-  //     { id: 20081, quantity: { amount: 2, unit: "cups"} },
-  //     { id: 18372, quantity: { amount: 4, unit: "cups"} },
-  //     { id: 18376, quantity: { amount: 3, unit: "tsp"} },
-  //     { id: 93672, quantity: { amount: 2, unit: "tsp"} }
-  //   ];
-  //   const ingredientsData = [
-  //     { id: 20081, estimatedCostInCents: 168 },
-  //     { id: 18372, estimatedCostInCents: 582 },
-  //     { id: 18376, estimatedCostInCents: 712 },
-  //     { id: 93672, estimatedCostInCents: 312 }
-  //   ];
-  //   const expectedResult = '$53.72';
-
-  //   const result = recipe.calculateIngredientsCosts(ingredientsData, ingredients);
-
-  //   expect(result).to.equal(expectedResult);
-  // });
 
 });
 

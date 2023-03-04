@@ -38,12 +38,12 @@ window.addEventListener('load', () => {
   })
 })
 
-// viewCustomerGreeting(){
+viewCustomerGreeting(){
 
-//   greeting.innerHTML =  `
-//       <h3>Hello ${customer.name}! You have ${customer}</h3>
-//     `
-// }
+  greeting.innerHTML =  `
+      <h3>Hello ${customer.name}! You have ${customer.customerBookings}</h3>
+    `
+}
 
 // // function getRandomSomethingId(){
 // //   return Math.floor(Math.random() * 41);
