@@ -89,13 +89,16 @@ h1 {
 h3 {
   
   color: #ffffff;
-  font-size: 1.0vw;
+  font-size: 1.6vw;
   -webkit-text-stroke-width: 0.04em;
-  -webkit-text-stroke-color: rgb(135, 225, 212);
+  -webkit-text-stroke-color: rgb(244, 83, 83);
   
 }
 
-
+.greeting-container{
+  display: flex;
+  flex-direction: column;
+}
 .main-page-section {
    background-image: url("/src/images/pink-hotel.png"); 
   background-repeat: no-repeat;

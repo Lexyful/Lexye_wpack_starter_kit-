@@ -36,7 +36,7 @@ const rooms = [
     },
 ]
 
-const bookings = [ 
+const bookingRepostory = [ 
 {
     id: "5fwrgu4i7k55hl6t9",
     userID: 1,
@@ -52,4 +52,4 @@ const bookings = [
 
 
 
-export{customers, rooms, bookings}
+export{customers, rooms, bookingRepostory}

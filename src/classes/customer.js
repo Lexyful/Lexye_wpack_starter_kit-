@@ -5,14 +5,29 @@ class Customer {
  
     this.name = customer.name
     this.customerBookings = []
+    
   }
-  addBookingById(bookingsData){
-    return this.customerBookings = bookingsData.filter(booking => booking.userID === this.id)
+  addBookings(){
 
+  }
+
+  checkBookings(bookingRepository){
+    // console.log(this.id)
+    this.customerBookings = bookingRepository.bookings.filter(booking => {
+      return booking.userID === this.id
+    })
     }
-  //   getNewBooking(booking){
-  //     this.customerBookings.push(booking)
-  // }
+// store this in a variable to invoke it because of the direct return
+    calculateCost(rooms){
+    return  this.customerBookings.reduce((acc, booking) => {
+      rooms.rooms.forEach(room => {
+      if(booking.roomNumber === room.number){
+          acc += room.costPerNight
+      }
+      })
+      return acc
+     }, 0)
+    }
 
   }
 
