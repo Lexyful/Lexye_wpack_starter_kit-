@@ -11,9 +11,11 @@ class Customer {
 
   }
 
-  checkBookings(bookingsData){
-    this.customerBookings = bookingsData.bookings.filter(booking => booking.userID === this.id)
-     
+  checkBookings(bookingRepository){
+    // console.log(this.id)
+    this.customerBookings = bookingRepository.bookings.filter(booking => {
+      return booking.userID === this.id
+    })
     }
 // store this in a variable to invoke it because of the direct return
     calculateCost(rooms){

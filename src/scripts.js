@@ -1,6 +1,6 @@
 import fetchAll from './apiCalls';
 import Customer from './classes/Customer';
-import Booking from './classes/Bookings';
+import Booking from './classes/Booking';
 import Room from './classes/Rooms';
 
 // This is the JavaScript entry file - your code begins here
@@ -8,6 +8,7 @@ import Room from './classes/Rooms';
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
+import BookingRepository from './classes/BookingRepository';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import fetchAll from '/apiCalls';
@@ -20,6 +21,7 @@ let customer;
 // let customerData;
 let bookingsData;
 let bookings;
+let bookingRepository
 let rooms;
 let roomsData;
 let greeting
@@ -36,9 +38,14 @@ window.addEventListener('load', () => {
   customer = new Customer(data[0])
   roomsData =  data[1].rooms
   rooms = new Room(roomsData)
-  bookingsData =  data[2].bookings
-  bookings =  new Booking(bookingsData)
-  console.log(bookings.getBookingByCustomerId(customer.id))
+  bookingsData =  data[2].bookings //DO NOT USE THIS ANYMORE
+  bookings = bookingsData.map(bookingData => {
+// console.log('bookingData',bookingData)
+   return new Booking(bookingData)
+  })
+  bookingRepository = new BookingRepository(bookings)
+
+  // console.log(bookingsRepository.getBookingByCustomerId(customer.id))
   viewCustomerGreeting()
 
   })
@@ -47,8 +54,10 @@ window.addEventListener('load', () => {
 searchButton.addEventListener('click', searchRoomsByDate)
 
 function viewCustomerGreeting(){
-  console.log("customer!!!!!",customer)
-  customer.checkBookings(bookings)
+  // console.log("customer!!!!!", bookingRepository)
+  // console.log(rooms)
+  customer.checkBookings(bookingRepository)
+  // console.log("customer booked", customer.customerBookings)
   const totalCost = customer.calculateCost(rooms)
   greetingContainer.innerHTML = ` <h3>Hello ${customer.name}! You have bookings and they cost ${totalCost}</h3>`
   customer.customerBookings.forEach(booking => {
@@ -67,7 +76,9 @@ function searchRoomsByDate(){
   // console.log(calendar.value)
   const selectedDate = calendar.value.replaceAll('-','/')
   console.log(selectedDate)
-  if(bookings.booking)
+  const bookedRoomNumbers = bookingRepository.getBookedRoomNumbersByDate(selectedDate)
+  const availableRooms = rooms.getAvailableRooms(bookedRoomNumbers)
+  console.log(availableRooms)
   // 2022/04/22
   
   // 2023-03-23
