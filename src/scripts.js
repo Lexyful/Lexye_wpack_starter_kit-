@@ -29,6 +29,8 @@ let greeting
 const greetingContainer = document.querySelector('.greeting-container')
 const searchButton = document.getElementById('dateSubmit')
 const calendar = document.getElementById('calendar')
+const dropdown = document.querySelector('.dropdown-container')
+
 
 
 
@@ -51,6 +53,7 @@ window.addEventListener('load', () => {
   })
 })
 
+dropdown.addEventListener('change', searchRoomsByType)
 searchButton.addEventListener('click', searchRoomsByDate)
 
 function viewCustomerGreeting(){
@@ -65,6 +68,7 @@ function viewCustomerGreeting(){
     <p>${booking.date}<p>
     <p>${booking.roomNumber}<p>
      </div>`
+
   })
   
   
@@ -77,11 +81,23 @@ function searchRoomsByDate(){
   const selectedDate = calendar.value.replaceAll('-','/')
   console.log(selectedDate)
   const bookedRoomNumbers = bookingRepository.getBookedRoomNumbersByDate(selectedDate)
-  const availableRooms = rooms.getAvailableRooms(bookedRoomNumbers)
-  console.log(availableRooms)
-  // 2022/04/22
-  
-  // 2023-03-23
+  rooms.getAvailableRooms(bookedRoomNumbers)
+//rooms.availableRooms
+ 
+}
+
+function searchRoomsByType(){
+  event.preventDefault()
+  const selectedType = event.target.value
+  const transformedSelectedType = selectedType.replace('-', ' ')
+  console.log("type", event.target.value)
+  console.log(transformedSelectedType)
+  // const bookedRoomTypes = bookingRepository.getBookedRoomByType(selectedType)
+  const availableRoomsByType = rooms.getAvailableRoomsByType(transformedSelectedType)
+  console.log(availableRoomsByType)
+
+console.log(availableRoomTypes)
+
 }
 // // function getRandomSomethingId(){
 // //   return Math.floor(Math.random() * 41);

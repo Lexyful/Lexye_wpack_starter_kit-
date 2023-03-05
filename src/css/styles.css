@@ -78,8 +78,6 @@ label {
 
 
 
-
-
 h1 {
   color: #ffffff;
   font-size: 2.0vw;
@@ -89,16 +87,13 @@ h1 {
 h3 {
   
   color: #ffffff;
-  font-size: 1.6vw;
+  font-size: 1.0vw;
   -webkit-text-stroke-width: 0.04em;
-  -webkit-text-stroke-color: rgb(244, 83, 83);
+  -webkit-text-stroke-color: rgb(135, 225, 212);
   
 }
 
-.greeting-container{
-  display: flex;
-  flex-direction: column;
-}
+
 .main-page-section {
    background-image: url("/src/images/pink-hotel.png"); 
   background-repeat: no-repeat;
@@ -126,3 +121,21 @@ h3 {
   -webkit-text-stroke-width: 0.03em;
   -webkit-text-stroke-color: rgb(62, 220, 164);
 }
+/* .displayed-bookings{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 400px;
+  width: 320px;
+  background-color:  #ffffff;
+  margin: 50px;
+} */
+
+
+.displayed-bookings{
+  border : solid 2px black;
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
