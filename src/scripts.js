@@ -29,6 +29,7 @@ let greeting
 const greetingContainer = document.querySelector('.greeting-container')
 const searchButton = document.getElementById('dateSubmit')
 const calendar = document.getElementById('calendar')
+const dropdown = document.querySelector('.dropdown-container')
 
 
 
@@ -51,6 +52,7 @@ window.addEventListener('load', () => {
   })
 })
 
+dropdown.addEventListener('change', searchRoomsByType)
 searchButton.addEventListener('click', searchRoomsByDate)
 
 function viewCustomerGreeting(){
@@ -82,6 +84,31 @@ function searchRoomsByDate(){
   // 2022/04/22
   
   // 2023-03-23
+}
+
+function searchRoomsByType(){
+  event.preventDefault()
+  const bookedRoomTypes = bookingRepository.getBookedRoomByType(selectedType)
+  const availableRoomTypes = rooms.getAvailableRooms(bookedRoomTypes)
+  const selectedType = dropdown.value
+  if(dropdown.value === 'single room'){
+   return availableRoomTypes.roomType.includes('single room')
+
+ }
+ if(dropdown.value === 'junior suite'){
+  return availableRoomTypes.roomType.includes('junior suite')
+
+}
+if(dropdown.value === 'residential suite'){
+  return availableRoomTypes.roomType.includes('residential suite')
+
+}
+if(dropdown.value === 'suite'){
+  return availableRoomTypes.roomType.includes('suite')
+
+}
+console.log(availableRoomTypes)
+
 }
 // // function getRandomSomethingId(){
 // //   return Math.floor(Math.random() * 41);
