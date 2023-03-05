@@ -33,6 +33,7 @@ const dropdown = document.querySelector('.dropdown-container')
 
 
 
+
 window.addEventListener('load', () => {
   fetchAll(38)
   .then(data => {
@@ -67,6 +68,7 @@ function viewCustomerGreeting(){
     <p>${booking.date}<p>
     <p>${booking.roomNumber}<p>
      </div>`
+
   })
   
   
@@ -79,34 +81,21 @@ function searchRoomsByDate(){
   const selectedDate = calendar.value.replaceAll('-','/')
   console.log(selectedDate)
   const bookedRoomNumbers = bookingRepository.getBookedRoomNumbersByDate(selectedDate)
-  const availableRooms = rooms.getAvailableRooms(bookedRoomNumbers)
-  console.log(availableRooms)
-  // 2022/04/22
-  
-  // 2023-03-23
+  rooms.getAvailableRooms(bookedRoomNumbers)
+//rooms.availableRooms
+ 
 }
 
 function searchRoomsByType(){
   event.preventDefault()
-  const bookedRoomTypes = bookingRepository.getBookedRoomByType(selectedType)
-  const availableRoomTypes = rooms.getAvailableRooms(bookedRoomTypes)
-  const selectedType = dropdown.value
-  if(dropdown.value === 'single room'){
-   return availableRoomTypes.roomType.includes('single room')
+  const selectedType = event.target.value
+  const transformedSelectedType = selectedType.replace('-', ' ')
+  console.log("type", event.target.value)
+  console.log(transformedSelectedType)
+  // const bookedRoomTypes = bookingRepository.getBookedRoomByType(selectedType)
+  const availableRoomsByType = rooms.getAvailableRoomsByType(transformedSelectedType)
+  console.log(availableRoomsByType)
 
- }
- if(dropdown.value === 'junior suite'){
-  return availableRoomTypes.roomType.includes('junior suite')
-
-}
-if(dropdown.value === 'residential suite'){
-  return availableRoomTypes.roomType.includes('residential suite')
-
-}
-if(dropdown.value === 'suite'){
-  return availableRoomTypes.roomType.includes('suite')
-
-}
 console.log(availableRoomTypes)
 
 }

@@ -1,15 +1,18 @@
 class Rooms {
   constructor(rooms){
     this.rooms = rooms
-    // this.available =[]
+    this.availableRooms =[]
    
   }
   getAvailableRooms(bookedRoomNumbers){
-    return this.rooms.filter(room => !bookedRoomNumbers.includes(room.number))
+   return this.availableRooms = this.rooms.filter(room => !bookedRoomNumbers.includes(room.number))
   } 
-  getAvailableRoomsByType(bookedRoomTypes){
-    console.log('hi',bookedRoomTypes)
-    return this.rooms.filter(room => !bookedRoomTypes.includes(room.type))
+  getAvailableRoomsByType(bookedRoomType){
+    console.log('hi',bookedRoomType)
+    if(bookedRoomType === 'all rooms'){
+      return this.availableRooms
+    }
+    return this.availableRooms.filter(room => bookedRoomType === room.roomType) 
   }
 
 }
