@@ -7,9 +7,6 @@
     padding: 0;
 }
 
-.hidden{
-  display: none;
-}
 
 html,
 body,
@@ -94,8 +91,8 @@ h3 {
 }
 
 
-.main-page-section {
-   background-image: url("/src/images/pink-hotel.png"); 
+.title-section {
+  background-image: url("/src/images/pink-hotel.png"); 
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -106,6 +103,7 @@ h3 {
   justify-content: center;
   width: 65vw;
   height: 50vh;
+  
   min-height: 50%
 }
 .hotel-turing-title {
@@ -131,11 +129,21 @@ h3 {
   margin: 50px;
 } */
 
-
-.displayed-bookings{
-  border : solid 2px black;
-  padding: 30px;
+.main-section{
+  display: flex;
+  flex-direction: column;
+  flex: 5;
+  flex-wrap: wrap;
   display: flex;
   flex-direction: row;
 }
+.displayed-bookings{
+  border : solid 2px black;
+  padding: 30px;
+  
+}
 
+
+.hidden{
+  display: none;
+}

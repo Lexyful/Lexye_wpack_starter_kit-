@@ -26,7 +26,8 @@ let rooms;
 let roomsData;
 let greeting
 
-const greetingContainer = document.querySelector('.greeting-container')
+
+const bookingContainer = document.querySelector('.greeting-container')
 const searchButton = document.getElementById('dateSubmit')
 const calendar = document.getElementById('calendar')
 const dropdown = document.querySelector('.dropdown-container')
@@ -62,9 +63,9 @@ function viewCustomerGreeting(){
   customer.checkBookings(bookingRepository)
   // console.log("customer booked", customer.customerBookings)
   const totalCost = customer.calculateCost(rooms)
-  greetingContainer.innerHTML = ` <h3>Hello ${customer.name}! You have bookings and they cost ${totalCost}</h3>`
+  bookingContainer.innerHTML = ` <h3>Hello ${customer.name}! You have bookings and they cost ${totalCost}</h3>`
   customer.customerBookings.forEach(booking => {
-    greetingContainer.innerHTML +=  `<div class="displayed-bookings">
+    bookingContainer.innerHTML +=  `<div class="displayed-bookings">
     <p>${booking.date}<p>
     <p>${booking.roomNumber}<p>
      </div>`
@@ -73,6 +74,14 @@ function viewCustomerGreeting(){
   
   
 }
+
+function show(element) {
+  element.classList.remove('hidden');
+};
+
+function hide(element) {
+  element.classList.add('hidden');
+};
 
 
 function searchRoomsByDate(){
@@ -93,12 +102,24 @@ function searchRoomsByType(){
   console.log("type", event.target.value)
   console.log(transformedSelectedType)
   // const bookedRoomTypes = bookingRepository.getBookedRoomByType(selectedType)
-  const availableRoomsByType = rooms.getAvailableRoomsByType(transformedSelectedType)
-  console.log(availableRoomsByType)
+  rooms.availableRooms = rooms.getAvailableRoomsByType(transformedSelectedType)
+console.log(rooms.availableRooms)
 
-console.log(availableRoomTypes)
+showAvailableBookings()
+// hide(heartBtn)
+// show(pinkHeartBtn) 
 
 }
+
+function showAvailableBookings(){
+ bookingContainer.innerHTML = ''
+  rooms.availableRooms.forEach(room => {
+   bookingContainer.innerHTML +=  `<div class="displayed-bookings">
+    <p>Type:${room.roomType}<p>
+    <p>Room Number${room.number}<p>
+     </div>`
+})
+} 
 // // function getRandomSomethingId(){
 // //   return Math.floor(Math.random() * 41);
 // // };
