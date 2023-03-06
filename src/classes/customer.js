@@ -30,7 +30,7 @@ class Customer {
     }
 
     makeNewBooking(bookingId){
-      this.bookings.push(bookingId)
+      this.customerBookings.push(bookingId)
 
     }
 

@@ -36,11 +36,13 @@ const dropdown = document.querySelector('.dropdown-container')
 bookingContainer.addEventListener('click', function(event) {
 
 if(event.target.className == "select-button"){
-  showNewBooking(parseInt(event.target.id))
+  newBooking(parseInt(event.target.id))
 }
 })
 // buttonSelect.addEventListener('click',showNewBooking)
-window.addEventListener('load', () => {
+window.addEventListener('load', fetchThingy)
+
+function fetchThingy(){
   fetchAll(38)
   .then(data => {
   customer = new Customer(data[0])
@@ -57,7 +59,7 @@ window.addEventListener('load', () => {
   viewCustomerGreeting()
 
   })
-})
+}
 
 dropdown.addEventListener('change', searchRoomsByType)
 searchButton.addEventListener('click', searchRoomsByDate)
@@ -126,16 +128,17 @@ function showAvailableBookings(){
 })
 } 
 
-function showNewBooking(roomNumber){
+function newBooking(roomNumber){
   console.log('Hi',)
   
   // const select = document.getElementById( `${room.number}`)
   // const selectButton = select.closest('button')
+if(!rooms.availableRooms.includes(roomNumber)){
 
-  const date = '2023/05/09'
+
   // const roomNumber = 6
 
-   fetch('http://localhost:3001/api/v1/bookings', {
+   const newFetchy =fetch('http://localhost:3001/api/v1/bookings', {
       method: 'POST',
       headers: {
           'Accept': 'application/json',
@@ -145,6 +148,28 @@ function showNewBooking(roomNumber){
   })
      .then(response => response.json())
      .then(response => console.log(JSON.stringify(response)))
+     event.preventDefault()
+     customer.makeNewBooking()
+     fetchThingy()
+     showBooking()
+     return newFetchy
+} else{
+  'Sorry nothing Availble!'
+}
+
+
+
+}
+
+function showBooking(){
+  bookingContainer.innerHTML = ''
+  rooms.availableRooms.forEach(room => {
+  bookingContainer.innerHTML +=  `<div class="displayed-bookings">
+  <p>Type:${room.roomType}<p>
+  <p>Room Number${room.number}<p>
+  <button class="select-button"  id=${room.number}>Select</button>
+   </div>`
+})
 }
 
   
