@@ -46,6 +46,7 @@ function fetchThingy(){
   fetchAll(38)
   .then(data => {
   customer = new Customer(data[0])
+  console.log('customer',customer.username)
   roomsData =  data[1].rooms
   rooms = new Room(roomsData)
   bookingsData =  data[2].bookings //DO NOT USE THIS ANYMORE
@@ -59,6 +60,7 @@ function fetchThingy(){
   viewCustomerGreeting()
 
   })
+  
 }
 
 dropdown.addEventListener('change', searchRoomsByType)
@@ -131,12 +133,7 @@ function showAvailableBookings(){
 function newBooking(roomNumber){
   console.log('Hi',)
   
-  // const select = document.getElementById( `${room.number}`)
-  // const selectButton = select.closest('button')
 if(!rooms.availableRooms.includes(roomNumber)){
-
-
-  // const roomNumber = 6
 
    const newFetchy =fetch('http://localhost:3001/api/v1/bookings', {
       method: 'POST',
@@ -147,28 +144,30 @@ if(!rooms.availableRooms.includes(roomNumber)){
       body: JSON.stringify({ "userID": customer.id, "date": selectedDate, "roomNumber": roomNumber })
   })
      .then(response => response.json())
-     .then(response => console.log(JSON.stringify(response)))
+     .then(response => {
+      //if new booking is created after submit button is clicked, send confirmation, by displaying info of the booking/ a check mark (YOU DID IT!)
+      //reGET data
+      showBooking()
+      setTimeout(fetchThingy, 3000)
+   
+     })
+  
+      
      event.preventDefault()
      customer.makeNewBooking()
-     fetchThingy()
-     showBooking()
      return newFetchy
-} else{
-  'Sorry nothing Availble!'
+} 
 }
 
 
 
-}
+
 
 function showBooking(){
   bookingContainer.innerHTML = ''
-  rooms.availableRooms.forEach(room => {
+  customer.customerBookings.forEach(room => {
   bookingContainer.innerHTML +=  `<div class="displayed-bookings">
-  <p>Type:${room.roomType}<p>
-  <p>Room Number${room.number}<p>
-  <button class="select-button"  id=${room.number}>Select</button>
-   </div>`
+  <p>YA BOOKED!!!<p>`
 })
 }
 

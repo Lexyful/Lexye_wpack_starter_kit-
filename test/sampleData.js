@@ -16,7 +16,7 @@ const customers = [
 
 ]
 
-const rooms = [
+const room = [
   
     {
         number: 2,
@@ -52,4 +52,4 @@ const bookingRepostory = [
 
 
 
-export{customers, rooms, bookingRepostory}
+export{customers, room, bookingRepostory}
