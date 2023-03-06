@@ -60,6 +60,7 @@ function fetchThingy(){
   viewCustomerGreeting()
 
   })
+  
 }
 
 dropdown.addEventListener('change', searchRoomsByType)
@@ -146,29 +147,27 @@ if(!rooms.availableRooms.includes(roomNumber)){
      .then(response => {
       //if new booking is created after submit button is clicked, send confirmation, by displaying info of the booking/ a check mark (YOU DID IT!)
       //reGET data
-      fetchThingy()
-      //display thingy
+      showBooking()
+      setTimeout(fetchThingy, 3000)
+   
      })
-      .catch((e) => {
-         ''
-      })
+  
+      
      event.preventDefault()
      customer.makeNewBooking()
      return newFetchy
 } 
-
-
-
 }
+
+
+
+
 
 function showBooking(){
   bookingContainer.innerHTML = ''
   customer.customerBookings.forEach(room => {
   bookingContainer.innerHTML +=  `<div class="displayed-bookings">
-  <p>Type:${room.roomType}<p>
-  <p>Room Number${room.number}<p>
-  <button class="select-button"  id=${room.number}>Select</button>
-   </div>`
+  <p>YA BOOKED!!!<p>`
 })
 }
 

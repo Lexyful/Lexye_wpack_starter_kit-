@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import {customers, rooms, bookings} from './sampleData'
 import Customer from '../src/classes/Customer';
-// import BookingRepository from '../src/classes/BookingRepository';
+import BookingRepository from '../src/classes/BookingRepository';
 
 
 
@@ -47,7 +47,7 @@ it('should be able to store bookings', () => {
 
   customer1.checkBookings(bookings)
   customer2.checkBookings(bookings)
- 
+ console.log(bookings)
   expect(customer1.customerBookings).to.deep.equal([bookings[0]]);
   expect(customer2.customerBookings).to.deep.equal([bookings[1]]);
 });
