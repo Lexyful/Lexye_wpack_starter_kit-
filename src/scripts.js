@@ -24,17 +24,22 @@ let bookings;
 let bookingRepository
 let rooms;
 let roomsData;
-let greeting
+let selectedDate
 
 
-const bookingContainer = document.querySelector('.greeting-container')
+const bookingContainer = document.querySelector('.main-section')
 const searchButton = document.getElementById('dateSubmit')
 const calendar = document.getElementById('calendar')
 const dropdown = document.querySelector('.dropdown-container')
+//  const buttonSelect = document.getElementById( `${room.number}`)
 
+bookingContainer.addEventListener('click', function(event) {
 
-
-
+if(event.target.className == "select-button"){
+  showNewBooking(parseInt(event.target.id))
+}
+})
+// buttonSelect.addEventListener('click',showNewBooking)
 window.addEventListener('load', () => {
   fetchAll(38)
   .then(data => {
@@ -56,6 +61,7 @@ window.addEventListener('load', () => {
 
 dropdown.addEventListener('change', searchRoomsByType)
 searchButton.addEventListener('click', searchRoomsByDate)
+// selectBUtton
 
 function viewCustomerGreeting(){
   // console.log("customer!!!!!", bookingRepository)
@@ -63,7 +69,9 @@ function viewCustomerGreeting(){
   customer.checkBookings(bookingRepository)
   // console.log("customer booked", customer.customerBookings)
   const totalCost = customer.calculateCost(rooms)
-  bookingContainer.innerHTML = ` <h3>Hello ${customer.name}! You have bookings and they cost ${totalCost}</h3>`
+  bookingContainer.innerHTML = `
+   <h3>Hello ${customer.name}! You have bookings and they cost ${totalCost}</h3>
+  `
   customer.customerBookings.forEach(booking => {
     bookingContainer.innerHTML +=  `<div class="displayed-bookings">
     <p>${booking.date}<p>
@@ -75,19 +83,12 @@ function viewCustomerGreeting(){
   
 }
 
-function show(element) {
-  element.classList.remove('hidden');
-};
-
-function hide(element) {
-  element.classList.add('hidden');
-};
 
 
 function searchRoomsByDate(){
   event.preventDefault()
   // console.log(calendar.value)
-  const selectedDate = calendar.value.replaceAll('-','/')
+  selectedDate = calendar.value.replaceAll('-','/')
   console.log(selectedDate)
   const bookedRoomNumbers = bookingRepository.getBookedRoomNumbersByDate(selectedDate)
   rooms.getAvailableRooms(bookedRoomNumbers)
@@ -106,8 +107,7 @@ function searchRoomsByType(){
 console.log(rooms.availableRooms)
 
 showAvailableBookings()
-// hide(heartBtn)
-// show(pinkHeartBtn) 
+
 
 }
 
@@ -117,9 +117,37 @@ function showAvailableBookings(){
    bookingContainer.innerHTML +=  `<div class="displayed-bookings">
     <p>Type:${room.roomType}<p>
     <p>Room Number${room.number}<p>
+    <button class="select-button"  id=${room.number}>Select</button>
      </div>`
+    //  const buttonSelect = document.getElementById( `${room.number}`)
+    //  console.log(buttonSelect)
+    //  bookingContainer
+    //  buttonSelect.addEventListener('click',showNewBooking)
 })
 } 
+
+function showNewBooking(roomNumber){
+  console.log('Hi',)
+  
+  // const select = document.getElementById( `${room.number}`)
+  // const selectButton = select.closest('button')
+
+  const date = '2023/05/09'
+  // const roomNumber = 6
+
+   fetch('http://localhost:3001/api/v1/bookings', {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ "userID": customer.id, "date": selectedDate, "roomNumber": roomNumber })
+  })
+     .then(response => response.json())
+     .then(response => console.log(JSON.stringify(response)))
+}
+
+  
 // // function getRandomSomethingId(){
 // //   return Math.floor(Math.random() * 41);
 // // };
