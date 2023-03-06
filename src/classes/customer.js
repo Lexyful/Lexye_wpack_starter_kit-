@@ -29,6 +29,11 @@ class Customer {
      }, 0)
     }
 
+    makeNewBooking(bookingId){
+      this.customerBookings.push(bookingId)
+
+    }
+
   }
 
 
