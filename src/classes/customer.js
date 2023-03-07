@@ -11,11 +11,12 @@ class Customer {
   }
 
   checkBookings(bookingRepository){
+  
     // console.log(this.id)
     this.customerBookings = bookingRepository.bookings.filter(booking => {
       return booking.userID === this.id
     })
-    }
+  }
 // store this in a variable to invoke it because of the direct return
     calculateCost(rooms){
     return  this.customerBookings.reduce((acc, booking) => {
@@ -37,10 +38,10 @@ class Customer {
     // }
 
    
-    makeNewBooking(bookingId){
-      this.customerBookings.push(bookingId)
+    // makeNewBooking(bookingId){
+    //   this.customerBookings.push(bookingId)
       
-    }
+    // }
 
   }
 

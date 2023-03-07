@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import {customers, room, bookings} from './sampleData'
 import Room from '../src/classes/Room';
-
+import Rooms from '../src/classes/Rooms';
 
 
 
@@ -25,10 +25,34 @@ beforeEach(() => {
   })
 
 
-    it('should have an id', () => {
+    it('should have a room', () => {
      expect(room1.number).to.equal(2);
       expect(room2.number).to.equal(3);
     
   });
+
+  it('should check if the room has a bidet',  () => {
+  expect(room1.bidet).to.equal(false);
+  expect(room2.bidet).to.equal(true);
     });
+
+  it('should check if the room has a bidet',  () => {
+    expect(room1.bidet).to.equal(false);
+    expect(room2.bidet).to.equal(true);
+        });
+  
+  it('should check if the room has a bedSize',  () => {
+        expect(room1.bedSize).to.equal('full');
+      
+    });
+  it('should how many beds in the room',  () => {
+    expect(room1.numBeds).to.equal(2);
+        
+    });
+    it('should check if the room has a bedSize',  () => {
+      expect(room1.costPerNight).to.equal(477.38);
+    
+       });
+  })
+  
  
