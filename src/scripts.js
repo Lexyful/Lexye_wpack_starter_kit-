@@ -106,7 +106,7 @@ function viewCustomerGreeting(){
   customer.checkBookings(bookingRepository)
   const totalCost = customer.calculateCost(rooms)
   bookingContainer.innerHTML = `
-   <h3>Hello ${customer.name}! You have bookings and they cost ${totalCost}</h3>
+   <h2>Hello ${customer.name}! Here are your bookings! ${totalCost}</h2>
   `
    customer.customerBookings.forEach(booking => {
     bookingContainer.innerHTML +=  `<div class="displayed-bookings">
