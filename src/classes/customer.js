@@ -2,8 +2,6 @@ class Customer {
   constructor(customer){
   
     this.id = customer.id
-     this.username = this.makeUsername()
-    this.password = 'overlook2021'
     this.name = customer.name
     this.customerBookings = []
     
@@ -30,17 +28,22 @@ class Customer {
      }, 0)
     }
 
-    makeUsername(){
-      return `customer${this.id}`
-    }
+    
+  
+
+    // makeUsername(){
+    //   return `customer${this.id}`
+      
+    // }
 
    
     makeNewBooking(bookingId){
       this.customerBookings.push(bookingId)
-
+      
     }
 
   }
+
 
 
 
