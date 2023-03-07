@@ -1,7 +1,8 @@
 import { expect } from 'chai';
-import {customers, rooms, bookings} from './sampleData'
+import {customers, room, bookingRepository} from './sampleData'
 import Customer from '../src/classes/Customer';
 import BookingRepository from '../src/classes/BookingRepository';
+import Rooms from '../src/classes/Rooms';
 
 
 
@@ -9,11 +10,12 @@ import BookingRepository from '../src/classes/BookingRepository';
 describe('Customer', () => {
   let customer1;
   let customer2;
- 
+  let allBookings
  
 beforeEach(() => {
   customer1 = new Customer(customers[0])
   customer2 = new Customer(customers[1])
+  allBookings = new BookingRepository(bookingRepository)
   // booking1 = new Booking(bookings[0])
   // booking2 = new Booking(bookings[1])
 });
@@ -42,16 +44,23 @@ beforeEach(() => {
 });
 
 it('should be able to store bookings', () => {
-  //   booking1 = new Booking(bookings[0])
-  //  booking2 = new Booking(bookings[1])
+  
 
-  customer1.checkBookings(bookings)
-  customer2.checkBookings(bookings)
- console.log(bookings)
-  expect(customer1.customerBookings).to.deep.equal([bookings[0]]);
-  expect(customer2.customerBookings).to.deep.equal([bookings[1]]);
+
+  customer1.checkBookings(allBookings)
+  customer2.checkBookings(allBookings)
+  expect(customer1.customerBookings).to.deep.equal([allBookings.bookings[0]]);
+ 
+  expect(customer2.customerBookings).to.deep.equal([allBookings.bookings[1]]);
 });
 
+it('should caluclate cost', () => {
+  const roomArray = new Rooms(room)
+  customer1.checkBookings(allBookings)
+  
+  expect(customer1.calculateCost(roomArray)).to.equal(roomArray.rooms[2].costPerNight)
+  
+})
 
 });
 

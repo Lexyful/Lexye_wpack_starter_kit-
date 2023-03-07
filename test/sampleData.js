@@ -29,14 +29,22 @@ const room = [
     {
         number: 3,
         roomType: "single room",
-        bidet: false,
+        bidet: true,
         bedSize: "king",
         numBeds: 1,
         costPerNight: 491.14
     },
+    {
+        number: 14,
+        roomType: "suite",
+        bidet: false,
+        bedSize: "full",
+        numBeds: 2,
+        costPerNight: 577.38
+    },
 ]
 
-const bookingRepostory = [ 
+const bookingRepository = [ 
 {
     id: "5fwrgu4i7k55hl6t9",
     userID: 1,
@@ -52,4 +60,4 @@ const bookingRepostory = [
 
 
 
-export{customers, room, bookingRepostory}
+export{customers, room, bookingRepository}

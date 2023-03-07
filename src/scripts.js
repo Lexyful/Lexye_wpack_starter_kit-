@@ -26,11 +26,15 @@ let rooms;
 let roomsData;
 let selectedDate
 
-
+// const signIn = document.getElementById('signInView')
+// const hotelTuringPageWelcome = document.getElementById('navigationBarContainer')
+const username = document.getElementById('userName')
+const password = document.getElementById('passwordId')
 const bookingContainer = document.querySelector('.main-section')
 const searchButton = document.getElementById('dateSubmit')
 const calendar = document.getElementById('calendar')
 const dropdown = document.querySelector('.dropdown-container')
+const signInButton = document.querySelector('.submit-button')
 //  const buttonSelect = document.getElementById( `${room.number}`)
 
 bookingContainer.addEventListener('click', function(event) {
@@ -39,14 +43,28 @@ if(event.target.className == "select-button"){
   newBooking(parseInt(event.target.id))
 }
 })
-// buttonSelect.addEventListener('click',showNewBooking)
-window.addEventListener('load', fetchThingy)
 
-function fetchThingy(){
-  fetchAll(38)
+// function show(element) {
+//   element.classList.remove('hidden');
+// };
+
+// function hide(element) {
+//   element.classList.add('hidden');
+// };
+
+// function signIn(){
+//   hide(hotelTuringPageWelcome)
+//   show(signIn)
+// }
+
+// buttonSelect.addEventListener('click',showNewBooking)
+// window.addEventListener('load', fetchThingy)
+
+function fetchThingy(id){
+  fetchAll(id)
   .then(data => {
   customer = new Customer(data[0])
-  console.log('customer',customer.username)
+ 
   roomsData =  data[1].rooms
   rooms = new Room(roomsData)
   bookingsData =  data[2].bookings //DO NOT USE THIS ANYMORE
@@ -65,7 +83,44 @@ function fetchThingy(){
 
 dropdown.addEventListener('change', searchRoomsByType)
 searchButton.addEventListener('click', searchRoomsByDate)
-// selectBUtton
+signInButton.addEventListener('click',  function() {
+  event.preventDefault()
+  signIn()
+  //pass the query selector values for un and pw in signin
+})
+
+function signIn(){
+  console.log("hi", username.value, password.value)
+  const id = validateInput(username.value, password.value) 
+  if(id){
+    fetchThingy(id)
+  }
+}
+
+function validateInput(username, password){
+  if(password !== 'overlook2021'){
+    bookingContainer.innerHTML = ''
+    bookingContainer.innerHTML +=  `<div class="displayed-bookings">
+    <p>Sorry! Incorrect Password<p>`
+    return 
+  }
+  if(username.substring(0, 8) !== 'customer'){
+    bookingContainer.innerHTML = ''
+    bookingContainer.innerHTML +=  `<div class="displayed-bookings">
+    <p>Sorry! Incorrect Username<p>`
+    return
+  }
+  if(parseInt(username.substring(8))  > 50 || parseInt(username.substring(8)) < 1){
+    bookingContainer.innerHTML = ''
+    bookingContainer.innerHTML +=  `<div class="displayed-bookings">
+    <p>Sorry! Incorrect Username<p>`
+    return
+
+  } 
+  return username.substring(8)
+
+}
+
 
 function viewCustomerGreeting(){
   // console.log("customer!!!!!", bookingRepository)
@@ -96,6 +151,7 @@ function searchRoomsByDate(){
   console.log(selectedDate)
   const bookedRoomNumbers = bookingRepository.getBookedRoomNumbersByDate(selectedDate)
   rooms.getAvailableRooms(bookedRoomNumbers)
+  showAvailableBookings()
 //rooms.availableRooms
  
 }
@@ -110,12 +166,13 @@ function searchRoomsByType(){
   rooms.availableRooms = rooms.getAvailableRoomsByType(transformedSelectedType)
 console.log(rooms.availableRooms)
 
-showAvailableBookings()
 
 
 }
 
 function showAvailableBookings(){
+ 
+ if(rooms.availableRooms.length > 0){
  bookingContainer.innerHTML = ''
   rooms.availableRooms.forEach(room => {
    bookingContainer.innerHTML +=  `<div class="displayed-bookings">
@@ -127,7 +184,17 @@ function showAvailableBookings(){
     //  console.log(buttonSelect)
     //  bookingContainer
     //  buttonSelect.addEventListener('click',showNewBooking)
-})
+  
+  })
+} else{
+  bookingContainer.innerHTML = ''
+  const thisThing = bookingContainer.innerHTML = ''
+   bookingContainer.innerHTML +=  `<div class="displayed-bookings">
+  <p>Nothing available<p>`
+  setTimeout(fetchThingy, 3000)
+  return thisThing
+}
+
 } 
 
 function newBooking(roomNumber){
@@ -148,15 +215,14 @@ if(!rooms.availableRooms.includes(roomNumber)){
       //if new booking is created after submit button is clicked, send confirmation, by displaying info of the booking/ a check mark (YOU DID IT!)
       //reGET data
       showBooking()
-      setTimeout(fetchThingy, 3000)
-   
-     })
-  
       
-     event.preventDefault()
-     customer.makeNewBooking()
-     return newFetchy
-} 
+    })
+    
+    
+    //  event.preventDefault()
+    //  customer.makeNewBooking()
+    return newFetchy
+  } 
 }
 
 
@@ -164,11 +230,12 @@ if(!rooms.availableRooms.includes(roomNumber)){
 
 
 function showBooking(){
+  console.log('hi')
   bookingContainer.innerHTML = ''
-  customer.customerBookings.forEach(room => {
-  bookingContainer.innerHTML +=  `<div class="displayed-bookings">
-  <p>YA BOOKED!!!<p>`
-})
+    bookingContainer.innerHTML +=  `<div class="displayed-bookings">
+    <p>YA BOOKED!!!<p>`
+
+  setTimeout(() => fetchThingy(customer.id), 3000)
 }
 
   
