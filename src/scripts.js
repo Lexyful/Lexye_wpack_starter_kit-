@@ -3,22 +3,13 @@ import Customer from './classes/Customer';
 import Booking from './classes/Booking';
 import Room from './classes/Rooms';
 
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
 import BookingRepository from './classes/BookingRepository';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import fetchAll from '/apiCalls';
-
 
 console.log('This is the JavaScript entry file - your code begins here.');
 
 
 let customer;
-// let customerData;
 let bookingsData;
 let bookings;
 let bookingRepository
@@ -26,57 +17,37 @@ let rooms;
 let roomsData;
 let selectedDate
 
-// const signIn = document.getElementById('signInView')
-// const hotelTuringPageWelcome = document.getElementById('navigationBarContainer')
 const username = document.getElementById('userName')
 const password = document.getElementById('passwordId')
-const bookingContainer = document.querySelector('.main-section')
-const searchButton = document.getElementById('dateSubmit')
-const calendar = document.getElementById('calendar')
-const dropdown = document.querySelector('.dropdown-container')
+const signInInput = document.getElementById('signInView')
 const signInButton = document.querySelector('.submit-button')
-//  const buttonSelect = document.getElementById( `${room.number}`)
-
+const dashBoard = document.getElementById('navigationBarContainer')
+const calendar = document.getElementById('calendar')
+const searchButton = document.getElementById('dateSubmit')
+const bookingContainer = document.querySelector('.main-section')
+const dropdown = document.querySelector('.dropdown-container')
 bookingContainer.addEventListener('click', function(event) {
-
 if(event.target.className == "select-button"){
   newBooking(parseInt(event.target.id))
 }
 })
 
-// function show(element) {
-//   element.classList.remove('hidden');
-// };
-
-// function hide(element) {
-//   element.classList.add('hidden');
-// };
-
-// function signIn(){
-//   hide(hotelTuringPageWelcome)
-//   show(signIn)
-// }
-
-// buttonSelect.addEventListener('click',showNewBooking)
-// window.addEventListener('load', fetchThingy)
 
 function fetchThingy(id){
   fetchAll(id)
   .then(data => {
+    console.log(data)
   customer = new Customer(data[0])
- 
   roomsData =  data[1].rooms
   rooms = new Room(roomsData)
-  bookingsData =  data[2].bookings //DO NOT USE THIS ANYMORE
+  bookingsData =  data[2].bookings
   bookings = bookingsData.map(bookingData => {
-// console.log('bookingData',bookingData)
    return new Booking(bookingData)
   })
   bookingRepository = new BookingRepository(bookings)
-
-  // console.log(bookingsRepository.getBookingByCustomerId(customer.id))
+  show(dashBoard)
+  hide(signInInput)
   viewCustomerGreeting()
-
   })
   
 }
@@ -86,10 +57,21 @@ searchButton.addEventListener('click', searchRoomsByDate)
 signInButton.addEventListener('click',  function() {
   event.preventDefault()
   signIn()
-  //pass the query selector values for un and pw in signin
+
 })
 
+
+function show(element) {
+  element.classList.remove('hidden');
+};
+
+function hide(element) {
+  element.classList.add('hidden');
+};
+
 function signIn(){
+  hide(dashBoard)
+  show(signInInput)
   console.log("hi", username.value, password.value)
   const id = validateInput(username.value, password.value) 
   if(id){
@@ -115,45 +97,32 @@ function validateInput(username, password){
     bookingContainer.innerHTML +=  `<div class="displayed-bookings">
     <p>Sorry! Incorrect Username<p>`
     return
-
   } 
   return username.substring(8)
-
 }
 
 
 function viewCustomerGreeting(){
-  // console.log("customer!!!!!", bookingRepository)
-  // console.log(rooms)
   customer.checkBookings(bookingRepository)
-  // console.log("customer booked", customer.customerBookings)
   const totalCost = customer.calculateCost(rooms)
   bookingContainer.innerHTML = `
    <h3>Hello ${customer.name}! You have bookings and they cost ${totalCost}</h3>
   `
-  customer.customerBookings.forEach(booking => {
+   customer.customerBookings.forEach(booking => {
     bookingContainer.innerHTML +=  `<div class="displayed-bookings">
-    <p>${booking.date}<p>
-    <p>${booking.roomNumber}<p>
+    <p>${booking.date} <p>
+    <p> Room Number: ${booking.roomNumber}<p>
      </div>`
-
-  })
-  
-  
+  }) 
 }
-
-
 
 function searchRoomsByDate(){
   event.preventDefault()
-  // console.log(calendar.value)
   selectedDate = calendar.value.replaceAll('-','/')
   console.log(selectedDate)
   const bookedRoomNumbers = bookingRepository.getBookedRoomNumbersByDate(selectedDate)
   rooms.getAvailableRooms(bookedRoomNumbers)
   showAvailableBookings()
-//rooms.availableRooms
- 
 }
 
 function searchRoomsByType(){
@@ -162,16 +131,11 @@ function searchRoomsByType(){
   const transformedSelectedType = selectedType.replace('-', ' ')
   console.log("type", event.target.value)
   console.log(transformedSelectedType)
-  // const bookedRoomTypes = bookingRepository.getBookedRoomByType(selectedType)
   rooms.availableRooms = rooms.getAvailableRoomsByType(transformedSelectedType)
-console.log(rooms.availableRooms)
-
-
-
+  showAvailableBookings()
 }
 
 function showAvailableBookings(){
- 
  if(rooms.availableRooms.length > 0){
  bookingContainer.innerHTML = ''
   rooms.availableRooms.forEach(room => {
@@ -180,11 +144,6 @@ function showAvailableBookings(){
     <p>Room Number${room.number}<p>
     <button class="select-button"  id=${room.number}>Select</button>
      </div>`
-    //  const buttonSelect = document.getElementById( `${room.number}`)
-    //  console.log(buttonSelect)
-    //  bookingContainer
-    //  buttonSelect.addEventListener('click',showNewBooking)
-  
   })
 } else{
   bookingContainer.innerHTML = ''
@@ -193,15 +152,11 @@ function showAvailableBookings(){
   <p>Nothing available<p>`
   setTimeout(fetchThingy, 3000)
   return thisThing
-}
-
+  }
 } 
 
-function newBooking(roomNumber){
-  console.log('Hi',)
-  
+function newBooking(roomNumber){ 
 if(!rooms.availableRooms.includes(roomNumber)){
-
    const newFetchy =fetch('http://localhost:3001/api/v1/bookings', {
       method: 'POST',
       headers: {
@@ -212,41 +167,17 @@ if(!rooms.availableRooms.includes(roomNumber)){
   })
      .then(response => response.json())
      .then(response => {
-      //if new booking is created after submit button is clicked, send confirmation, by displaying info of the booking/ a check mark (YOU DID IT!)
-      //reGET data
       showBooking()
       
     })
-    
-    
-    //  event.preventDefault()
-    //  customer.makeNewBooking()
     return newFetchy
   } 
 }
-
-
-
-
 
 function showBooking(){
   console.log('hi')
   bookingContainer.innerHTML = ''
     bookingContainer.innerHTML +=  `<div class="displayed-bookings">
     <p>YA BOOKED!!!<p>`
-
   setTimeout(() => fetchThingy(customer.id), 3000)
 }
-
-  
-// // function getRandomSomethingId(){
-// //   return Math.floor(Math.random() * 41);
-// // };
-
-// function show(element) {
-// element.classList.remove('hidden');
-// };
-
-// function hide(element) {
-// element.classList.add('hidden');
-// };

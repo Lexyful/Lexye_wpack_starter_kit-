@@ -16,28 +16,25 @@ beforeEach(() => {
   customer1 = new Customer(customers[0])
   customer2 = new Customer(customers[1])
   allBookings = new BookingRepository(bookingRepository)
-  // booking1 = new Booking(bookings[0])
-  // booking2 = new Booking(bookings[1])
-});
 
+  });
 
-
-  it('should be a function', () => {
+it('should be a function', () => {
       expect(Customer).to.be.a('function');
   })
 
-  it('should be an instance of customer', () => {
+it('should be an instance of customer', () => {
       expect(customer1).to.be.an.instanceof(Customer);
       expect(customer2).to.be.an.instanceof(Customer);
   })
-  it('should have an id', () => {
+it('should have an id', () => {
     
-      expect(customer1.id).to.equal(1);
-      expect(customer2.id).to.equal(2);
+    expect(customer1.id).to.equal(1);
+    expect(customer2.id).to.equal(2);
     
   });
   it('should have name', () => {
-    
+
     expect(customer1.name).to.equal("Bri B");
     expect(customer2.name).to.equal("Bea O");
   
@@ -45,8 +42,6 @@ beforeEach(() => {
 
 it('should be able to store bookings', () => {
   
-
-
   customer1.checkBookings(allBookings)
   customer2.checkBookings(allBookings)
   expect(customer1.customerBookings).to.deep.equal([allBookings.bookings[0]]);
@@ -60,7 +55,7 @@ it('should caluclate cost', () => {
   
   expect(customer1.calculateCost(roomArray)).to.equal(roomArray.rooms[2].costPerNight)
   
-})
+  })
 
 });
 
