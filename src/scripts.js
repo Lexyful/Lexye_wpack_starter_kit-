@@ -34,6 +34,7 @@ if(event.target.className == "select-button"){
 function fetchThingy(id){
   fetchAll(id)
   .then(data => {
+    console.log(data)
   customer = new Customer(data[0])
   roomsData =  data[1].rooms
   rooms = new Room(roomsData)
@@ -94,8 +95,8 @@ function viewCustomerGreeting(){
   `
    customer.customerBookings.forEach(booking => {
     bookingContainer.innerHTML +=  `<div class="displayed-bookings">
-    <p>${booking.date}<p>
-    <p>${booking.roomNumber}<p>
+    <p>${booking.date} <p>
+    <p> Room Number: ${booking.roomNumber}<p>
      </div>`
   }) 
 }
