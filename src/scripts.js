@@ -152,8 +152,8 @@ function searchRoomsByDate(){
   const bookedRoomNumbers = bookingRepository.getBookedRoomNumbersByDate(selectedDate)
   rooms.getAvailableRooms(bookedRoomNumbers)
   showAvailableBookings()
-//rooms.availableRooms
- 
+  //rooms.availableRooms
+  
 }
 
 function searchRoomsByType(){
@@ -164,6 +164,7 @@ function searchRoomsByType(){
   console.log(transformedSelectedType)
   // const bookedRoomTypes = bookingRepository.getBookedRoomByType(selectedType)
   rooms.availableRooms = rooms.getAvailableRoomsByType(transformedSelectedType)
+  showAvailableBookings()
 console.log(rooms.availableRooms)
 
 
