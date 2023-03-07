@@ -19,7 +19,9 @@ let selectedDate
 
 const username = document.getElementById('userName')
 const password = document.getElementById('passwordId')
+const signInInput = document.getElementById('signInView')
 const signInButton = document.querySelector('.submit-button')
+const dashBoard = document.getElementById('navigationBarContainer')
 const calendar = document.getElementById('calendar')
 const searchButton = document.getElementById('dateSubmit')
 const bookingContainer = document.querySelector('.main-section')
@@ -43,6 +45,8 @@ function fetchThingy(id){
    return new Booking(bookingData)
   })
   bookingRepository = new BookingRepository(bookings)
+  show(dashBoard)
+  hide(signInInput)
   viewCustomerGreeting()
   })
   
@@ -56,7 +60,18 @@ signInButton.addEventListener('click',  function() {
 
 })
 
+
+function show(element) {
+  element.classList.remove('hidden');
+};
+
+function hide(element) {
+  element.classList.add('hidden');
+};
+
 function signIn(){
+  hide(dashBoard)
+  show(signInInput)
   console.log("hi", username.value, password.value)
   const id = validateInput(username.value, password.value) 
   if(id){
