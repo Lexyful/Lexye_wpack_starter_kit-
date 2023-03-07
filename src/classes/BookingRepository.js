@@ -14,11 +14,6 @@ const bookingsMatchedDate = this.bookings.filter(booking => booking.date === dat
 return bookingsMatchedDate.map(booking => booking.roomNumber)
 }
 
-// getBookedRoomByType(roomType){
-//   const bookingMatchedByType = this.bookings.filter(booking => booking.roomType === roomType)
-//   return bookingMatchedByType.map(booking => booking)
-// }
-
 }
 
 export default BookingRepository
