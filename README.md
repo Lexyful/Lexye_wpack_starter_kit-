@@ -6,13 +6,13 @@ This application was written by Lexye Jordan during Mod2 at Turing School of Sof
 https://github.com/Lexyful?tab=repositories
 
 Login Feature
-![Alt Text](login.png)
+![Alt Text](/Users/alexysjordan/Mod2/Lexye_wpack_starter_kit/src/images/login.png)
 
 Greeting and Bookings
-![Alt Text](bookingss.png)
+![Alt Text](/Users/alexysjordan/Mod2/Lexye_wpack_starter_kit/src/images/bookingss.png)
 
 Available Rooms
-![Alt Text](available.png)
+![Alt Text](/Users/alexysjordan/Mod2/Lexye_wpack_starter_kit/src/images/available.png)
 
 Setup
 
